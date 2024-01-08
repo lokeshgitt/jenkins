@@ -7,12 +7,9 @@ pipeline {
                 sh "ls -lart ./*"
             }
         }     
-    }
-    stages {
         stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
         }     
-    }
 }
