@@ -5,8 +5,13 @@ pipeline {
       artifactory_creds = "b"
       sonarhosturl = "c"
    }
-   stages {     
+   stages {  
       stage('echo input variables') {
+               when{
+         expressions{
+            params.env == 'prod'
+         }
+      }
          steps{
             sh '''
             set -x
