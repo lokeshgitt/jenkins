@@ -9,7 +9,7 @@ pipeline {
       stage('echo input variables') {
          steps{
             sh '''
-            // set +x
+            set -x
             echo api_name: ${api_name}
             echo build type: ${buildtype}
             echo environment: ${env}
