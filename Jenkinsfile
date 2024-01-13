@@ -7,9 +7,9 @@ pipeline {
    }
    stages {  
       stage('echo input variables') {
-               when{
-                 expressions{
-                   params.env == 'prod'
+         when {
+            expressions {
+             params.env == 'prod'
          }
       }
          steps{
