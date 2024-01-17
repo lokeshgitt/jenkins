@@ -26,6 +26,10 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn clean package'
+                sh 'mvn sonar:sonar \
+  -Dsonar.projectKey=key \
+  -Dsonar.host.url=http://54.147.83.243:9000 \
+  -Dsonar.login=0f91b47a708948c438cdf47b3307f13c57fbad22'
             }
         } 
          stage('SonarQube Scan') {
