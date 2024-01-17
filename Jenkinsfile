@@ -28,5 +28,15 @@ pipeline {
                 sh 'mvn clean package'
             }
         } 
+         stage('SonarQube Scan') {
+            steps {
+                script {
+                    withSonarQubeEnv('sonarqube') {
+                        // Other scanner options can be configured here
+                        sh 'sonar-scanner -Dsonar.projectKey=key -Dsonar.sources=.'
+                    }
+                }
+            }
+        }
    }    
 }
