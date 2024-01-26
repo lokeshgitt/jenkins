@@ -44,7 +44,7 @@ pipeline {
             steps {
                script {
                     def anypointCliCommand = """
-                        anypoint-cli-v4 --username ${ANYPOINT_USERNAME} --password ${ANYPOINT_PASSWORD} \
+                        anypoint-cli-v4  [--username ${ANYPOINT_USERNAME}] [--password ${ANYPOINT_PASSWORD}]  \
                         runtime-mgr cloudhub-application deploy test \
                         --environment dev --workers 1 \
                         --region US east /var/lib/jenkins/workspace/output.zip
