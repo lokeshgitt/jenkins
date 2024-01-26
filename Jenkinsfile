@@ -46,7 +46,7 @@ pipeline {
                     def anypointCliCommand = """
                         anypoint-cli --username ${ANYPOINT_USERNAME} --password ${ANYPOINT_PASSWORD}  \
                         runtime-mgr cloudhub-application deploy test \
-                        --environment DESIGN --workers 1 \
+                        --environment SANDBOX --workers 1 \
                         --region US east /var/lib/jenkins/workspace/output.zip
                     """
                     sh anypointCliCommand
