@@ -4,6 +4,8 @@ pipeline {
       artifactory_url = "a"
       artifactory_creds = "b"
       sonarhosturl = "c"
+      ANYPOINT_USERNAME = "lokeshdevops"
+      ANYPOINT_PASSWORD = "Cloudhub_password9"
    }
    stages {  
       stage('echo input variables') {
@@ -26,6 +28,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn clean package'
+                sh 'zip -r output.zip /var/lib/jenkins/workspace/maven/target/*.jar'
+                sh 'ls -lrta'
             }
         } 
          stage('SonarQube Scan') {
@@ -34,6 +38,19 @@ pipeline {
   -Dsonar.projectKey=key \
   -Dsonar.host.url=http://54.147.83.243:9000 \
   -Dsonar.login=0f91b47a708948c438cdf47b3307f13c57fbad22'
+            }
+        }
+         stage('Upload ZIP to Anypoint') {
+            steps {
+               script {
+                    def anypointCliCommand = """
+                        anypoint-cli --username ${ANYPOINT_USERNAME} --password ${ANYPOINT_PASSWORD} \
+                        runtime-mgr cloudhub-application deploy test \
+                        --environment dev --workers 1 \
+                        --region US east /var/lib/jenkins/workspace/output.zip
+                    """
+                    sh anypointCliCommand
+                }
             }
         }
    }    
