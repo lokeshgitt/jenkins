@@ -1,5 +1,2 @@
-https://github.com/lokeshgitt/final
-https://github.com/lokeshgitt/newgit
-https://github.com/lokeshgitt/test
 https://github.com/lokeshgitt/java-web-app-docker
 https://github.com/lokeshgitt/mule_1
